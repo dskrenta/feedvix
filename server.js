@@ -4,6 +4,9 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const { promisify } = require('util');
+const fetch = require('node-fetch');
+
+const swansonQuotes = require('./data/swansonQuotes');
 
 const PORT = 3000;
 const XKCD_IMGS_FILE = './data/xkcdImgUrls.json';
@@ -32,7 +35,20 @@ app.get('/', async (req, res) => {
       num: rand(0, Number.MAX_SAFE_INTEGER)
     });
 
-    res.json(results);
+    results.push({
+      type: 'text',
+      text: swansonQuotes[rand(0, swansonQuotes.length - 1)]
+    });
+
+    const buzzWordRes = await fetch('https://corporatebs-generator.sameerkumar.website/');
+    const buzzWordObj = await buzzWordRes.json();
+
+    results.push({
+      type: 'text',
+      text: buzzWordObj.phrase
+    });
+
+    res.json(shuffle(results));
   }
   catch (error) {
     console.error(error);

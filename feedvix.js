@@ -18,7 +18,10 @@
           htmlStr += `<img src=${result.url}></img><hr />`;
         }
         else if (result.type === 'num') {
-          htmlStr += `<h3>${result.num}</h3><hr />`
+          htmlStr += `<h3>${result.num}</h3><hr />`;
+        }
+        else if (result.type === 'text') {
+          htmlStr += `<h3>${result.text}</h3><hr />`;
         }
       }
 
