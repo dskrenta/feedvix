@@ -1,0 +1,25 @@
+{
+  "name": "feedvix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "feedvix.js",
+  "scripts": {
+    "start": "NODE_ENV=production node --optimize_for_size --max_old_space_size=2147 --gc_interval=100 server.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js --watch ./ server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dskrenta/feedvix.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dskrenta/feedvix/issues"
+  },
+  "homepage": "https://github.com/dskrenta/feedvix#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}
