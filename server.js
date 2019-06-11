@@ -11,6 +11,7 @@ const swansonQuotes = require('./data/swansonQuotes');
 const PORT = 3000;
 const XKCD_IMGS_FILE = './data/xkcdImgUrls.json';
 const NEWS_FILE = './data/news.json';
+const JSERVICE_API_ENDPOINT = 'http://jservice.io/api/random?count=100';
 
 const readFileAsync = promisify(fs.readFile);
 
@@ -62,6 +63,18 @@ app.get('/', async (req, res) => {
         image: article.urlToImage,
         createdAt: article.publishedAt,
         content: article.content
+      });
+    }
+
+    const jserviceResults = await fetch(JSERVICE_API_ENDPOINT);
+    const jserviceObj = await jserviceResults.json();
+
+    for (let question of jserviceObj) {
+      results.push({
+        type: 'trivia',
+        question: question.question,
+        answer: question.answer,
+        value: question.value
       });
     }
 

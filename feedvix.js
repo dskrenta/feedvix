@@ -34,6 +34,14 @@
             <hr />
           `;
         }
+        else if (result.type === 'trivia') {
+          htmlStr += `
+            <p>${result.question}</p>
+            <p style="font-weight: bold">${result.answer}</p>
+            <p>${result.value}</p>
+            <hr />
+          `;
+        }
       }
 
       document.getElementById(CONTENT_ID).insertAdjacentHTML('afterbegin', htmlStr);
