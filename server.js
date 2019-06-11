@@ -10,6 +10,7 @@ const swansonQuotes = require('./data/swansonQuotes');
 
 const PORT = 3000;
 const XKCD_IMGS_FILE = './data/xkcdImgUrls.json';
+const NEWS_FILE = './data/news.json';
 
 const readFileAsync = promisify(fs.readFile);
 
@@ -23,12 +24,12 @@ app.get('/', async (req, res) => {
     const xkcdContent = await readFileAsync(XKCD_IMGS_FILE);
     const xkcdUrls = JSON.parse(xkcdContent);
 
-    shuffle(xkcdUrls).slice(0, 10).forEach((imgUrl) => {
+    shuffle(xkcdUrls).slice(0, 25).forEach((imgUrl) => {
       results.push({
         type: 'img',
         url: imgUrl
       });
-    })
+    });
 
     results.push({
       type: 'num',
@@ -37,7 +38,7 @@ app.get('/', async (req, res) => {
 
     results.push({
       type: 'text',
-      text: swansonQuotes[rand(0, swansonQuotes.length - 1)]
+      text: `${swansonQuotes[rand(0, swansonQuotes.length - 1)]} - Ron Swanson`
     });
 
     const buzzWordRes = await fetch('https://corporatebs-generator.sameerkumar.website/');
@@ -47,6 +48,22 @@ app.get('/', async (req, res) => {
       type: 'text',
       text: buzzWordObj.phrase
     });
+
+    const newsContent = await readFileAsync(NEWS_FILE);
+    const newsObj = await JSON.parse(newsContent);
+
+    for (let article of newsObj.articles) {
+      results.push({
+        type: 'article',
+        source: article.source,
+        aurthor: article.aurthor,
+        title: article.title,
+        url: article.url,
+        image: article.urlToImage,
+        createdAt: article.publishedAt,
+        content: article.content
+      });
+    }
 
     res.json(shuffle(results));
   }

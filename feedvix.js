@@ -23,6 +23,17 @@
         else if (result.type === 'text') {
           htmlStr += `<h3>${result.text}</h3><hr />`;
         }
+        else if (result.type === 'article') {
+          htmlStr += `
+            <img src=${result.image} width="200px"></img>
+            <a href=${result.url} target="_blank">
+              <h3>${result.title}</h3>
+            </a>
+            <small>${result.source.name} - ${result.createdAt}</small>
+            <p>${result.content}</p>
+            <hr />
+          `;
+        }
       }
 
       document.getElementById(CONTENT_ID).insertAdjacentHTML('afterbegin', htmlStr);
