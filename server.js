@@ -18,7 +18,18 @@ const readFileAsync = promisify(fs.readFile);
 const app = express();
 app.use(cors());
 
+app.use(express.static('public'))
+
 app.get('/', async (req, res) => {
+  try {
+    res.sendFile(`${__dirname}/index.html`);
+  }
+  catch (error) {
+    console.error(error);
+  }
+});
+
+app.get('/api', async (req, res) => {
   try {
     const results = [];
 

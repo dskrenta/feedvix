@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const API_URL = 'http://localhost:3000';
+  const API_URL = 'http://localhost:3000/api';
   const CONTENT_ID = 'content';
 
   async function fetchPlaceContent() {
