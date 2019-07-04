@@ -25,6 +25,19 @@
         }
         else if (result.type === 'article') {
           htmlStr += `
+            <div class="media">
+              <div class="media-body">
+                <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
+                  <h5 class="mt-0">${result.title}</h5>
+                </a>
+                <p>${result.content}</p>
+              </div>
+              <img src=${result.image} class="align-self-start mr-3"  width="200px" alt="...">
+            </div>
+            <hr />
+          `;
+          /*
+          htmlStr += `
             <img src=${result.image} width="200px"></img>
             <a href=${result.url} target="_blank">
               <h3>${result.title}</h3>
@@ -33,6 +46,7 @@
             <p>${result.content}</p>
             <hr />
           `;
+          */
         }
         else if (result.type === 'trivia') {
           htmlStr += `
