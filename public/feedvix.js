@@ -35,7 +35,7 @@
                   <h5 class="mt-0">${result.title}</h5>
                 </a>
                 <small class="text-muted">${result.source.name} - ${result.createdAt}</small>
-                <p>${result.content}</p>
+                ${result.content && `<p>${result.content}</p>`}
               </div>
               <img src=${result.image} class="align-self-start mr-3"  width="200px" alt="...">
             </div>
@@ -62,4 +62,10 @@
   }
 
   fetchPlaceContent();
+
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll('img').forEach((img) => {
+     img.onerror = () => this.style.display='none';
+    });
+ });
 })();
