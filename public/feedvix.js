@@ -15,7 +15,11 @@
 
       for (let result of results) {
         if (result.type === 'img') {
-          htmlStr += `<img src=${result.url}></img><hr />`;
+          htmlStr += `
+            <img src=${result.url}></img>
+            <figcaption class="figure-caption">${result.source}</figcaption>
+            <hr />
+          `;
         }
         else if (result.type === 'num') {
           htmlStr += `<h3>${result.num}</h3><hr />`;
@@ -30,29 +34,21 @@
                 <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
                   <h5 class="mt-0">${result.title}</h5>
                 </a>
+                <small class="text-muted">${result.source.name} - ${result.createdAt}</small>
                 <p>${result.content}</p>
               </div>
               <img src=${result.image} class="align-self-start mr-3"  width="200px" alt="...">
             </div>
             <hr />
           `;
-          /*
-          htmlStr += `
-            <img src=${result.image} width="200px"></img>
-            <a href=${result.url} target="_blank">
-              <h3>${result.title}</h3>
-            </a>
-            <small>${result.source.name} - ${result.createdAt}</small>
-            <p>${result.content}</p>
-            <hr />
-          `;
-          */
         }
-        else if (result.type === 'trivia') {
+        else if (result.type === 'trivia' && (result.question && result.answer)) {
           htmlStr += `
-            <p>${result.question}</p>
-            <p style="font-weight: bold">${result.answer}</p>
-            <p>${result.value}</p>
+            <blockquote class="blockquote">
+              <p class="mb-0">${result.question}</p>
+              <footer class="blockquote-footer">${result.answer}</footer>
+              ${result.value && `<p class="text-muted">${result.value}</p>`}
+            </blockquote>
             <hr />
           `;
         }

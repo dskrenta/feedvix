@@ -39,6 +39,7 @@ app.get('/api', async (req, res) => {
     shuffle(xkcdUrls).slice(0, 25).forEach((imgUrl) => {
       results.push({
         type: 'img',
+        source: 'xkcd',
         url: imgUrl
       });
     });
