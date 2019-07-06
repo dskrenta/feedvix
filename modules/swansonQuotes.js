@@ -1,11 +1,13 @@
 'use strict';
 
+const swansonQuotesArr = require('../data/swansonQuotes');
 const rand = require('../utils/rand');
 
 function swansonQuotes() {
   return [{
-    type: 'text',
-    text: `${swansonQuotes[rand(0, swansonQuotes.length - 1)]} - Ron Swanson`
+    type: 'quote',
+    content: swansonQuotesArr[rand(0, swansonQuotesArr.length - 1)],
+    author: 'Ron Swanson'
   }];
 }
 

@@ -9,12 +9,10 @@
       const res = await fetch(API_URL);
       const results = await res.json();
 
-      console.log(results);
-
       let htmlStr = '';
 
       for (let result of results) {
-        if (result.type === 'img') {
+        if (result.type === 'img' && result.url) {
           htmlStr += `
             <img src=${result.url}></img>
             <figcaption class="figure-caption">${result.source}</figcaption>
@@ -48,6 +46,15 @@
               <p class="mb-0">${result.question}</p>
               <footer class="blockquote-footer">${result.answer}</footer>
               ${result.value && `<p class="text-muted">${result.value}</p>`}
+            </blockquote>
+            <hr />
+          `;
+        }
+        else if (result.type === 'quote') {
+          htmlStr += `
+            <blockquote class="blockquote">
+              <p class="mb-0">${result.content}</p>
+              <footer class="blockquote-footer">${result.author}</footer>
             </blockquote>
             <hr />
           `;
