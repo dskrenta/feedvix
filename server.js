@@ -10,6 +10,7 @@ const randomNumber = require('./modules/randomNumber');
 const swansonQuotes = require('./modules/swansonQuotes');
 const xkcd = require('./modules/xkcd');
 const wiki = require('./modules/wiki');
+const adviceSlip = require('./modules/adviceSlip');
 const shuffle = require('./utils/shuffle');
 
 const PORT = 3000;
@@ -41,7 +42,8 @@ app.get('/api', async (req, res) => {
       ...randomNumber(),
       ...swansonQuotes(),
       ...await xkcd(),
-      ...await wiki()
+      ...await wiki(),
+      ...await adviceSlip()
     ];
     res.json(shuffle(results));
   }
