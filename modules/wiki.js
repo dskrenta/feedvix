@@ -19,7 +19,6 @@ async function wiki() {
 
       if (summaryRes && summaryRes.title !== 'Not found.') {
         results.push({
-          // ...summaryRes,
           type: 'wiki',
           title: summaryRes.titles.normalized,
           image: summaryRes.originalimage ? summaryRes.originalimage.source : null,

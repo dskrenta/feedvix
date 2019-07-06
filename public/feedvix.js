@@ -4,7 +4,7 @@
   const API_URL = 'http://localhost:3000/api';
   const CONTENT_ID = 'content';
 
-  async function fetchPlaceContent() {
+  async function fetchAndPlaceContent() {
     try {
       const res = await fetch(API_URL);
       const results = await res.json();
@@ -83,7 +83,7 @@
     }
   }
 
-  fetchPlaceContent();
+  fetchAndPlaceContent();
 
   document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('img').forEach((img) => {
