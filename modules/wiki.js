@@ -2,7 +2,7 @@
 
 const fetch = require('node-fetch');
 
-const WIKI_LIMIT = 1;
+const WIKI_LIMIT = 25;
 const RANDOM_WIKI_API = `https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit=${WIKI_LIMIT}&rnnamespace=0`;
 const WIKI_SUMMARY_API = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
 
@@ -19,8 +19,12 @@ async function wiki() {
 
       if (summaryRes && summaryRes.title !== 'Not found.') {
         results.push({
-          ...summaryRes,
-          type: 'wiki'
+          // ...summaryRes,
+          type: 'wiki',
+          title: summaryRes.titles.normalized,
+          image: summaryRes.originalimage ? summaryRes.originalimage.source : null,
+          content: summaryRes.extract ? summaryRes.extract : null,
+          url: summaryRes.content_urls ? summaryRes.content_urls.desktop.page : null
         });
       }
     }
@@ -31,7 +35,5 @@ async function wiki() {
     console.error(error);
   }
 }
-
-wiki();
 
 module.exports = wiki;
