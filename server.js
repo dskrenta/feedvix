@@ -11,6 +11,7 @@ const swansonQuotes = require('./modules/swansonQuotes');
 const xkcd = require('./modules/xkcd');
 const wiki = require('./modules/wiki');
 const adviceSlip = require('./modules/adviceSlip');
+const fact = require('./modules/fact');
 const shuffle = require('./utils/shuffle');
 
 const PORT = 3000;
@@ -43,7 +44,8 @@ app.get('/api', async (req, res) => {
       ...swansonQuotes(),
       ...await xkcd(),
       ...await wiki(),
-      ...await adviceSlip()
+      ...await adviceSlip(),
+      ...await fact()
     ];
     res.json(shuffle(results));
   }
