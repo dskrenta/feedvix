@@ -14,7 +14,7 @@ const timeDifference = require('../utils/timeDifference');
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
 
-const API_ENDPOINT = `https://newsapi.org/v2/top-headlines?apiKey=${process.env.NEWS_API_KEY}&sources=abc-news,ars-technica,associated-press,bbc-news,bloomberg,business-insider,cbs-news,cnbc,cnn,engadget,financial-times,fortune,google-news,hacker-news,mashable,msnbc,national-geographic,national-review,nbc-news,new-scientist,newsweek,new-york-magazine,politico,recode,reddit-r-all,reuters,techcrunch,the-hill,the-huffington-post,the-new-york-times,the-next-web,the-telegraph,the-verge,the-wall-street-journal,the-washington-post,the-washington-times,time,usa-today,wired`
+const API_ENDPOINT = `https://newsapi.org/v2/top-headlines?pageSize=100&apiKey=${process.env.NEWS_API_KEY}&sources=abc-news,ars-technica,associated-press,bbc-news,bloomberg,business-insider,cbs-news,cnbc,cnn,engadget,financial-times,fortune,google-news,hacker-news,mashable,msnbc,national-geographic,national-review,nbc-news,new-scientist,newsweek,new-york-magazine,politico,recode,reddit-r-all,reuters,techcrunch,the-hill,the-huffington-post,the-new-york-times,the-next-web,the-telegraph,the-verge,the-wall-street-journal,the-washington-post,the-washington-times,time,usa-today,wired`;
 const NEWS_FILE = './data/news.json';
 
 async function newsApi() {

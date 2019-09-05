@@ -20,9 +20,6 @@ app.use(cors());
 
 app.use(express.static('public'));
 
-// on server startup schedule next news fetch function
-// read file
-// get last timestamp
 async function init() {
   try {
     await scheduleNewsUpdate();
