@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const buzzWord = require('./modules/buzzWord');
 const jService = require('./modules/jService');
-const newsApi = require('./modules/newsApi');
+const { newsApi, scheduleNewsUpdate } = require('./modules/newsApi');
 const randomNumber = require('./modules/randomNumber');
 const swansonQuotes = require('./modules/swansonQuotes');
 const xkcd = require('./modules/xkcd');
@@ -23,6 +23,16 @@ app.use(express.static('public'));
 // on server startup schedule next news fetch function
 // read file
 // get last timestamp
+async function init() {
+  try {
+    await scheduleNewsUpdate();
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
+
+init();
 
 app.get('/', async (req, res) => {
   try {

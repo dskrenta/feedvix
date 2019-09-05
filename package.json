@@ -19,6 +19,7 @@
   "homepage": "https://github.com/dskrenta/feedvix#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.1"
