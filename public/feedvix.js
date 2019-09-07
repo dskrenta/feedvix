@@ -1,7 +1,8 @@
 (() => {
   'use strict';
 
-  const API_URL = 'http://localhost:3000/api';
+  const API_URL = 'https://feedvix.herokuapp.com/api';
+  const DEV_API_URL = 'http://localhost:3000/api';
   const CONTENT_ID = 'content';
 
   async function fetchAndPlaceContent() {
