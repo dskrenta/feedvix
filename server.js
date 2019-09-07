@@ -13,7 +13,7 @@ const wiki = require('./modules/wiki');
 const adviceSlip = require('./modules/adviceSlip');
 const shuffle = require('./utils/shuffle');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
