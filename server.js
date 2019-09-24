@@ -48,6 +48,15 @@ app.get('/', async (req, res) => {
   }
 });
 
+app.get('/index.css', async (req, res) => {
+  try {
+    res.sendFile(`${__dirname}/index.css`);
+  }
+  catch (error) {
+    console.error(error);
+  }
+});
+
 app.get('/api', async (req, res) => {
   try {
     const results = [
