@@ -8,7 +8,7 @@ body {
 .item {
   background: white;
   color: #444;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.04);
   padding: 12px 0 12px 16px;
   margin-bottom: 16px;
 }
@@ -39,4 +39,127 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center; 
+  flex-direction: column;
+}
+
+.vix {
+  height: 100px;
+  width: 100px;
+  position: relative;
+}
+.spine {
+  height: 50px;
+  width: 4px;
+  background: #345;
+  position: absolute;
+  right: 41px;
+  bottom: 25px;
+}
+
+.topJaw {
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  transform: rotate(-25deg);
+  background: #345;
+  left: 57px;
+  top: 25px;
+  animation: topChomp 500ms ease-in-out infinite alternate;
+  transform-origin: bottom left;
+}
+.bottomJaw {
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  transform: rotate(25deg);
+  background: #345;
+  left: 57px;
+  top: 28px;
+  animation: bottomChomp 500ms ease-in-out infinite alternate;
+  transform-origin: top left;
+}
+.ttooth1 {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #345;
+  position: absolute;
+  left: 8px;
+}
+.ttooth2 {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 15px solid #345;
+  position: absolute;
+  left: 20px;
+}
+.ttooth3 {
+
+}
+.btooth1 {
+
+}
+.btooth2 {
+
+}
+.btooth3 {
+
+}
+
+.leftArm {
+  height: 25px;
+  width: 4px;
+  background: #345;
+  position: absolute;
+  bottom: 30px;
+  left: 48px;
+  transform: rotate(-35deg);
+}
+.rightArm {
+  height: 25px;
+  width: 4px;
+  background: #345;
+  position: absolute;
+  bottom: 30px;
+  left: 62px;
+  transform: rotate(35deg);
+}
+
+.leftLeg {
+  height: 30px;
+  width: 4px;
+  background: #345;
+  position: absolute;
+  bottom: 0;
+  left: 47px;
+  transform: rotate(35deg);
+}
+.rightLeg {
+  height: 30px;
+  width: 4px;
+  background: #345;
+  position: absolute;
+  bottom: 0;
+  left: 63px;
+  transform: rotate(-35deg);
+}
+
+@keyframes topChomp {
+  0% {
+    transform: rotate(-25deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes bottomChomp {
+  0% {
+    transform: rotate(25deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
 }
