@@ -17,7 +17,7 @@
         if (result.type === 'img' && result.url) {
           htmlStr += `
             <hr />
-            <img src=${result.url}></img>
+            <img src=${result.url} class="img"></img>
             <figcaption class="figure-caption">${result.source}</figcaption>
             <hr />
           `;
