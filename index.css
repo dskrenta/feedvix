@@ -1,5 +1,4 @@
 body {
-  background: var(--light);
   padding-top: 16px;
 }
 .container {
@@ -8,7 +7,7 @@ body {
 .item {
   background: white;
   color: #444;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.05);
   padding: 12px 0 12px 16px;
   margin-bottom: 16px;
 }
@@ -57,7 +56,6 @@ h3 {
   left: 25px;
   bottom: 25px;
 }
-
 .topJaw {
   position: absolute;
   height: 4px;
@@ -68,18 +66,6 @@ h3 {
   top: 25px;
   animation: topChomp 500ms ease-in-out infinite alternate;
   transform-origin: bottom left;
-  z-index: 1;
-}
-.bottomJaw {
-  position: absolute;
-  height: 4px;
-  width: 35px;
-  transform: rotate(25deg);
-  background: #345;
-  left: 27px;
-  top: 28px;
-  animation: bottomChomp 500ms ease-in-out infinite alternate;
-  transform-origin: top left;
   z-index: 1;
 }
 .eye1 {
@@ -120,6 +106,18 @@ h3 {
   position: absolute;
   left: 25px;
 }
+.bottomJaw {
+  position: absolute;
+  height: 4px;
+  width: 35px;
+  transform: rotate(25deg);
+  background: #345;
+  left: 27px;
+  top: 28px;
+  animation: bottomChomp 500ms ease-in-out infinite alternate;
+  transform-origin: top left;
+  z-index: 1;
+}
 .btooth1 {
   width: 0; 
   height: 0; 
@@ -140,7 +138,6 @@ h3 {
   left: 20px;
   bottom: 0;
 }
-
 .leftArm {
   height: 20px;
   width: 4px;
@@ -159,7 +156,6 @@ h3 {
   left: 32px;
   transform: rotate(45deg);
 }
-
 .leftLeg {
   height: 30px;
   width: 4px;
@@ -178,7 +174,6 @@ h3 {
   left: 33px;
   transform: rotate(-35deg);
 }
-
 .ball {
   height: 10px;
   width: 10px;
@@ -228,5 +223,17 @@ h3 {
   100% {
     opacity: 0;
     right: 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .item {
+    flex-direction: column;
+  }
+  .wiki > img {
+    margin-top: 12px;
+  }
+  .img {
+    max-width: 100%;
   }
 }
