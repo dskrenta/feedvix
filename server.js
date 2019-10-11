@@ -47,7 +47,7 @@ app.get('/', async (req, res) => {
     console.error(error);
   }
 });
-
+/*
 app.get('/index.css', async (req, res) => {
   try {
     res.sendFile(`${__dirname}/index.css`);
@@ -56,7 +56,7 @@ app.get('/index.css', async (req, res) => {
     console.error(error);
   }
 });
-
+*/
 app.get('/api', async (req, res) => {
   try {
     const results = [
