@@ -18,7 +18,9 @@
           htmlStr += `
             <hr />
             <img src=${result.url} class="img"></img>
-            <figcaption class="figure-caption">${result.source}</figcaption>
+	    <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
+              <figcaption class="figure-caption">${result.source}</figcaption>
+            </a>
             <hr />
           `;
         }
