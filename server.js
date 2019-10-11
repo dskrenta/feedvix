@@ -11,6 +11,7 @@ const swansonQuotes = require('./modules/swansonQuotes');
 const xkcd = require('./modules/xkcd');
 const wiki = require('./modules/wiki');
 const adviceSlip = require('./modules/adviceSlip');
+const jokes = require('./modules/jokes');
 const shuffle = require('./utils/shuffle');
 
 const PORT = process.env.PORT || 3000;
@@ -47,16 +48,7 @@ app.get('/', async (req, res) => {
     console.error(error);
   }
 });
-/*
-app.get('/index.css', async (req, res) => {
-  try {
-    res.sendFile(`${__dirname}/index.css`);
-  }
-  catch (error) {
-    console.error(error);
-  }
-});
-*/
+
 app.get('/api', async (req, res) => {
   try {
     const results = [
@@ -67,7 +59,8 @@ app.get('/api', async (req, res) => {
       ...swansonQuotes(),
       ...await xkcd(),
       ...await wiki(),
-      ...await adviceSlip()
+      ...await adviceSlip(),
+      ...jokes()
     ];
     res.json(shuffle(results));
   }
