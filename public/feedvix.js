@@ -1,14 +1,14 @@
 (() => {
   'use strict';
 
-  const API_URL = 'https://feedvix.herokuapp.com/api';
+  // const API_URL = 'https://feedvix.herokuapp.com/api';
   const DEV_API_URL = 'http://localhost:3000/api';
   const CONTENT_ID = 'content';
   const LOADING_ID = 'loading';
- 
+
   async function fetchAndPlaceContent() {
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch(DEV_API_URL);
       const results = await res.json();
 
       let htmlStr = '';
@@ -71,6 +71,13 @@
               </div>
               ${result.image ? `<img src=${result.image} class="align-self-start mr-3"  width="200px" alt=${result.title}>` : ''}
             </div>
+          `;
+        }
+        else if (result.type === 'joke' && result.content) {
+          htmlStr += `
+            <blockquote class="blockquote joke item">
+              ${result.content}
+            </blockquote>
           `;
         }
       }
