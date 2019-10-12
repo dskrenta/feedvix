@@ -8,7 +8,7 @@
 
   async function fetchAndPlaceContent() {
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch(DEV_API_URL);
       const results = await res.json();
 
       let htmlStr = '';
@@ -18,7 +18,7 @@
           htmlStr += `
             <hr />
             <img src=${result.url} class="img"></img>
-	    <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
+	            <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
               <figcaption class="figure-caption">${result.source}</figcaption>
             </a>
             <hr />
