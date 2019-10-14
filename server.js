@@ -55,7 +55,7 @@ app.get('/api', async (req, res) => {
     const results = [
       ...await buzzWord(),
       ...await jService(),
-      ...await newsApi(),
+      // ...await newsApi(),
       ...randomNumber(),
       ...swansonQuotes(),
       ...await xkcd(),

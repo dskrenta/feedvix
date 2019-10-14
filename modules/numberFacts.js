@@ -2,24 +2,26 @@
 
 const fetch = require('node-fetch');
 
-const FACTS_API_ENDPOINT = 'http://numbersapi.com/random/trivia';
+const getEndpoint = (nums) => `http://numbersapi.com/${[...new Set(nums)].join(',')}/trivia?notfound=floor`;
 
 async function numberFacts() {
   try {
-    let factsArr = [];
+    let nums = [];
 
-    for (let i = 0; i < 5; i++) {
-      const factsResults = await fetch(FACTS_API_ENDPOINT);
-      const factsObj = await factsResults.json();
-      factsArr.push(factsObj);
+    for (let i = 0; i < 25; i++) {
+      const rand = Math.floor((Math.random() * 10000));
+      nums.push(rand);
     }
+    
+    const endpoint = getEndpoint(nums);
+    const res = await fetch(endpoint);
+    const resJSON = await res.json();
 
-    console.log(factsArr)
-
-    return factsArr.map(fact => {
+    const factArray = Object.values(resJSON);
+    return factArray.map(fact => {
       return {
-        type: 'text',
-        text: fact
+        type: 'fact',
+        fact
       };
     });
   }

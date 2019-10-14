@@ -24,8 +24,12 @@
             <hr />
           `;
         }
-        else if (result.type === 'num') {
-          htmlStr += `<h3 class="item">${result.num}</h3>`;
+        else if (result.type === 'fact') {
+          htmlStr += `
+            <blockquote class="blockquote item wiki">
+              ${result.fact}
+            </blockquote>
+          `;
         }
         else if (result.type === 'text') {
           htmlStr += `<h3 class="item">${result.text}</h3>`;
