@@ -13,20 +13,13 @@ const wiki = require('./modules/wiki');
 const adviceSlip = require('./modules/adviceSlip');
 const jokes = require('./modules/jokes');
 const shuffle = require('./utils/shuffle');
+const makeIterable = require('./utils/makeIterable');
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+
 app.use(cors());
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-  next();
-});
-
 app.use(express.static('public'));
 
 async function init() {
@@ -52,15 +45,15 @@ app.get('/', async (req, res) => {
 app.get('/api', async (req, res) => {
   try {
     const results = [
-      ...await buzzWord(),
-      ...await jService(),
-      ...await newsApi(),
-      ...randomNumber(),
-      ...swansonQuotes(),
-      ...await xkcd(),
-      ...await wiki(),
-      ...await adviceSlip(),
-      ...jokes()
+      ...makeIterable(await buzzWord()),
+      ...makeIterable(await jService()),
+      ...makeIterable(await newsApi()),
+      ...makeIterable(randomNumber()),
+      ...makeIterable(swansonQuotes()),
+      ...makeIterable(await xkcd()),
+      ...makeIterable(await wiki()),
+      ...makeIterable(await adviceSlip()),
+      ...makeIterable(jokes())
     ];
     res.json(shuffle(results));
   }
