@@ -13,7 +13,6 @@ const wiki = require('./modules/wiki');
 const adviceSlip = require('./modules/adviceSlip');
 const jokes = require('./modules/jokes');
 const shuffle = require('./utils/shuffle');
-const makeIterable = require('./utils/makeIterable');
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +20,18 @@ const app = express();
 
 app.use(cors());
 app.use(express.static('public'));
+
+const modules = [
+  buzzWord,
+  jService,
+  newsApi,
+  randomNumber,
+  swansonQuotes,
+  xkcd,
+  wiki,
+  adviceSlip,
+  jokes
+];
 
 async function init() {
   try {
@@ -33,28 +44,19 @@ async function init() {
 
 init();
 
-app.get('/', async (req, res) => {
-  try {
-    res.sendFile(`${__dirname}/index.html`);
-  }
-  catch (error) {
-    console.error(error);
-  }
-});
-
 app.get('/api', async (req, res) => {
   try {
-    const results = [
-      ...makeIterable(await buzzWord()),
-      ...makeIterable(await jService()),
-      ...makeIterable(await newsApi()),
-      ...makeIterable(randomNumber()),
-      ...makeIterable(swansonQuotes()),
-      ...makeIterable(await xkcd()),
-      ...makeIterable(await wiki()),
-      ...makeIterable(await adviceSlip()),
-      ...makeIterable(jokes())
-    ];
+    let results = [];
+
+    for (const func of modules) {
+      try {
+        results = [...results, ...await func()];
+      }
+      catch (error) {
+        console.error(`Module error: ${func.name}`, error);
+      }
+    }
+
     res.json(shuffle(results));
   }
   catch (error) {

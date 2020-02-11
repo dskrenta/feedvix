@@ -6,9 +6,18 @@
   const CONTENT_ID = 'content';
   const LOADING_ID = 'loading';
 
+  function escapeHtml(unsafe) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
   async function fetchAndPlaceContent() {
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch(DEV_API_URL);
       const results = await res.json();
 
       let htmlStr = '';
@@ -18,7 +27,7 @@
           htmlStr += `
             <hr />
             <img src=${result.url} class="img"></img>
-	    <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
+	          <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
               <figcaption class="figure-caption">${result.source}</figcaption>
             </a>
             <hr />
@@ -38,7 +47,7 @@
                   <h5 class="mt-0">${result.title}</h5>
                 </a>
                 <small class="text-muted">${result.source.name} - ${result.createdAt}</small>
-                ${result.content ? `<p>${result.content}</p>` : ''}
+                ${result.content ? `<p>${escapeHtml(result.content)}</p>` : ''}
               </div>
               <img src=${result.image} class="align-self-start mr-3"  width="200px" alt="...">
             </div>

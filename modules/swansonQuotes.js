@@ -3,7 +3,7 @@
 const swansonQuotesArr = require('../data/swansonQuotes');
 const rand = require('../utils/rand');
 
-function swansonQuotes() {
+async function swansonQuotes() {
   return [{
     type: 'quote',
     content: swansonQuotesArr[rand(0, swansonQuotesArr.length - 1)],
