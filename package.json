@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node --optimize_for_size --max_old_space_size=2147 --gc_interval=100 server.js",
     "dev": "./node_modules/nodemon/bin/nodemon.js --watch ./ server.js",
-    "build": "zip -r deploy.zip ./ -x 'node_modules/*' -x '.env' -x '.git/*' -x 'data/*' -x 'legacy/*'"
+    "build": "zip -r deploy.zip ./ -x 'node_modules/*' -x '.env' -x '.git/*' -x 'legacy/*'"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const API_URL = 'https://feedvix.herokuapp.com/api';
+  const API_URL = 'http://feedvix.us-west-1.elasticbeanstalk.com/api';
   const DEV_API_URL = 'http://localhost:3000/api';
   const CONTENT_ID = 'content';
   const LOADING_ID = 'loading';
