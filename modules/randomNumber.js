@@ -2,7 +2,7 @@
 
 const rand = require('../utils/rand');
 
-function randomNumber() {
+async function randomNumber() {
   return [{
     type: 'num',
     num: rand(0, Number.MAX_SAFE_INTEGER)

@@ -5,46 +5,58 @@ const cors = require('cors');
 
 const buzzWord = require('./modules/buzzWord');
 const jService = require('./modules/jService');
-const newsApi = require('./modules/newsApi');
+const { newsApi, scheduleNewsUpdate } = require('./modules/newsApi');
 const randomNumber = require('./modules/randomNumber');
 const swansonQuotes = require('./modules/swansonQuotes');
 const xkcd = require('./modules/xkcd');
-const wiki = require('./modules/wiki');
+const wikiModule = require('./modules/wiki');
 const adviceSlip = require('./modules/adviceSlip');
+const jokes = require('./modules/jokes');
 const shuffle = require('./utils/shuffle');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
-app.use(cors());
 
+app.use(cors());
 app.use(express.static('public'));
 
-// on server startup schedule next news fetch function
-// read file
-// get last timestamp
+const modules = [
+  buzzWord,
+  jService,
+  newsApi,
+  randomNumber,
+  swansonQuotes,
+  xkcd,
+  wikiModule,
+  adviceSlip,
+  jokes
+];
 
-app.get('/', async (req, res) => {
+async function init() {
   try {
-    res.sendFile(`${__dirname}/index.html`);
+    await scheduleNewsUpdate();
   }
   catch (error) {
     console.error(error);
   }
-});
+}
+
+init();
 
 app.get('/api', async (req, res) => {
   try {
-    const results = [
-      ...await buzzWord(),
-      ...await jService(),
-      ...await newsApi(),
-      ...randomNumber(),
-      ...swansonQuotes(),
-      ...await xkcd(),
-      ...await wiki(),
-      ...await adviceSlip()
-    ];
+    let results = [];
+
+    for (const func of modules) {
+      try {
+        results = [...results, ...await func()];
+      }
+      catch (error) {
+        console.error(`Module error: ${func.name}`, error);
+      }
+    }
+
     res.json(shuffle(results));
   }
   catch (error) {
