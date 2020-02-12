@@ -17,7 +17,7 @@
 
   async function fetchAndPlaceContent() {
     try {
-      const res = await fetch(DEV_API_URL);
+      const res = await fetch(API_URL);
       const results = await res.json();
 
       let htmlStr = '';
