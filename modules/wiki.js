@@ -1,38 +1,36 @@
 'use strict';
 
-const fetch = require('node-fetch');
+const wiki = require('wikijs').default;
+const wikiApi = wiki({ headers: { 'User-Agent': 'Feedvix (http://feedvix.com; dskrenta@gmail.com) wiki.js' } });
 
 const WIKI_LIMIT = 25;
-const RANDOM_WIKI_API = `https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit=${WIKI_LIMIT}&rnnamespace=0`;
-const WIKI_SUMMARY_API = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
 
-async function wiki() {
+async function wikiModule() {
   try {
-    const results = [];
+    const titles = await wikiApi.random(WIKI_LIMIT);
 
-    const randomWikiResJson = await fetch(RANDOM_WIKI_API);
-    const randomWikiRes = await randomWikiResJson.json();
-
-    for (let wiki of randomWikiRes.query.random) {
-      const summaryResJson = await fetch(`${WIKI_SUMMARY_API}${encodeURIComponent(wiki.title.replace(' ', '_'))}`);
-      const summaryRes = await summaryResJson.json();
-
-      if (summaryRes && summaryRes.title !== 'Not found.') {
-        results.push({
+    const pagePromises = titles.map(async (title) => {
+      try {
+        const page = await wikiApi.page(title);
+        return {
           type: 'wiki',
-          title: summaryRes.titles.normalized,
-          image: summaryRes.originalimage ? summaryRes.originalimage.source : null,
-          content: summaryRes.extract ? summaryRes.extract : null,
-          url: summaryRes.content_urls ? summaryRes.content_urls.desktop.page : null
-        });
+          title,
+          image: await page.mainImage(),
+          content: await page.summary(),
+          url: page.url()
+        };
       }
-    }
+      catch (error) {
+        console.error('Wiki module page fetch error', error);
+        return {};
+      }
+    });
 
-    return results;
+    return await Promise.all(pagePromises);
   }
   catch (error) {
-    console.error(error);
+    console.error('Wiki error', error);
   }
 }
 
-module.exports = wiki;
+module.exports = wikiModule;

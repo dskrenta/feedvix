@@ -9,7 +9,7 @@ const { newsApi, scheduleNewsUpdate } = require('./modules/newsApi');
 const randomNumber = require('./modules/randomNumber');
 const swansonQuotes = require('./modules/swansonQuotes');
 const xkcd = require('./modules/xkcd');
-const wiki = require('./modules/wiki');
+const wikiModule = require('./modules/wiki');
 const adviceSlip = require('./modules/adviceSlip');
 const jokes = require('./modules/jokes');
 const shuffle = require('./utils/shuffle');
@@ -28,7 +28,7 @@ const modules = [
   randomNumber,
   swansonQuotes,
   xkcd,
-  wiki,
+  wikiModule,
   adviceSlip,
   jokes
 ];
