@@ -87,7 +87,7 @@
         }
         else if (result.type === 'joke' && result.content) {
           htmlStr += `
-            <blockquote class="blockquote joke item">
+            <blockquote class="blockquote joke item" style="font-family: monospace">
               ${result.content}
             </blockquote>
           `;
