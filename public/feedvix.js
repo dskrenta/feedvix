@@ -17,7 +17,8 @@
 
   async function fetchAndPlaceContent() {
     try {
-      const res = await fetch(API_URL);
+      const apiUrl = window.location.href.startsWith('http://localhost') ? DEV_API_URL : API_URL;
+      const res = await fetch(apiUrl);
       const results = await res.json();
 
       let htmlStr = '';
