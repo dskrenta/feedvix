@@ -33,6 +33,41 @@ h3 {
   border-left: 5px solid var(--yellow);
   padding-right: 12px;
 }
+#save,
+#showSaved {
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  background: #eee;
+  color: #666;
+  border-radius: 4px;
+  padding: 0 8px 2px;
+  margin: 8px 0 -8px;
+  border: none;
+}
+#showSaved {
+  position: fixed;
+  bottom: 20px;
+  right: 28px;
+  margin: 0;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 12px 2px;
+  z-index: 101;
+}
+#saved {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  background: white;
+  z-index: 100;
+  padding-top: 16px;
+  box-sizing: border-box; 
+}
 
 /* LOADING SYMBOL */
 
