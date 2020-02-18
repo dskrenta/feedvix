@@ -47,6 +47,8 @@ async function updateNews() {
     const newsJson = await newsRes.json();
     const updatedNews = { lastFetched: new Date(), ...newsJson };
     await writeFileAsync(NEWS_FILE, JSON.stringify(updatedNews));
+
+    scheduleNewsUpdate();
   }
   catch (error) {
     console.error(error);
