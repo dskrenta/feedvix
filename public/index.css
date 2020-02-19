@@ -242,3 +242,7 @@ h3 {
     max-width: 100%;
   }
 }
+
+.image-container {
+  margin-bottom: 10px;
+}

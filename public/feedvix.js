@@ -26,10 +26,12 @@
       for (let result of results) {
         if (result.type === 'img' && result.url) {
           htmlStr += `
-            <img src=${result.url} class="img"></img>
-	          <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
-              <figcaption class="figure-caption">${result.source}</figcaption>
-            </a>
+            <div class="image-container">
+              <img src=${result.url} class="img"></img>
+              <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
+                <figcaption class="figure-caption">${result.source}</figcaption>
+              </a>
+            </div>
           `;
         }
         else if (result.type === 'num') {
