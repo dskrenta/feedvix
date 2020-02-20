@@ -14,6 +14,7 @@ const adviceSlip = require('./modules/adviceSlip');
 const jokes = require('./modules/jokes');
 const shuffle = require('./utils/shuffle');
 const quotes = require('./modules/quotes');
+const getPdf = require('./utils/getPdf');
 
 const PORT = process.env.PORT || 3000;
 
@@ -62,7 +63,19 @@ app.get('/api', async (req, res) => {
     res.json(shuffle(results));
   }
   catch (error) {
-    console.error(error);
+    console.error('api error', error);
+  }
+});
+
+app.get('/pdf', async (req, res) => {
+  try {
+    const pdf = await getPdf();
+    res.type('arrayBuffer');
+    res.set('Accept', 'application/pdf');
+    res.send(pdf);
+  }
+  catch (error) {
+    console.error('pdf error', error);
   }
 });
 
