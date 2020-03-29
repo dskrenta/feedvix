@@ -20,7 +20,7 @@ function atom({ symbol, shells }) {
 
     const eCount = shells[i];
     const electrons = Array(eCount).fill(0);
-    const radius = size / 2;
+    const radius = size / 2.04;
     const width = size - 12;
 
     for (let j in electrons) {
