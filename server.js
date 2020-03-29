@@ -14,6 +14,7 @@ const adviceSlip = require('./modules/adviceSlip');
 const jokes = require('./modules/jokes');
 const shuffle = require('./utils/shuffle');
 const quotes = require('./modules/quotes');
+const elements = require('./modules/elements');
 const getPdf = require('./utils/getPdf');
 
 const PORT = process.env.PORT || 3000;
@@ -33,7 +34,8 @@ const modules = [
   wikiModule,
   adviceSlip,
   jokes,
-  quotes
+  quotes,
+  elements
 ];
 
 async function init() {
