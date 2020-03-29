@@ -92,6 +92,26 @@
             </blockquote>
           `;
         }
+        else if (result.type === 'element' && result.content) {
+          const info = result.content;
+          htmlStr += `
+            <div class="media item wiki">
+              <div class="media-body">
+                <h2 class="mt-0">${info.name} (${info.symbol})</h2>
+                <p class="mb-0"">${info.summary}</p>
+                <a target="_blank" href="${info.source}">Wikipedia</a>
+                <p></p>
+                ${info.atomic_mass ? `<p class="mb-0""><b>Atomic Mass:</b> ${info.atomic_mass}</p>` : ''}
+                ${info.phase ? `<p class="mb-0""><b>Phase:</b> ${info.phase}</p>` : ''}
+                ${info.category ? `<p class="mb-0""><b>Category:</b> ${info.category}</p>` : ''}
+                ${info.appearance ? `<p class="mb-0""><b>Appearance:</b> ${info.appearance}</p>` : ''}
+                ${info.discovered_by ? `<p class="mb-0""><b>Discovered By:</b> ${info.discovered_by}</p>` : ''}
+                ${info.named_by ? `<p class="mb-0""><b>Named By:</b> ${info.named_by}</p>` : ''}
+              </div>
+              ${atom(info)}
+            </div>
+          `;
+        }
       }
 
       document.getElementById(LOADING_ID).remove();
