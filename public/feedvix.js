@@ -45,7 +45,7 @@
             <div class="media item">
               <div class="media-body">
                 <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
-                  <h5 class="mt-0">${result.title}</h5>
+                  <h3 class="mt-0">${result.title}</h3>
                 </a>
                 <small class="text-muted">${result.source.name} - ${result.createdAt}</small>
                 ${result.content ? `<p>${escapeHtml(result.content)}</p>` : ''}
@@ -59,7 +59,7 @@
             <blockquote class="blockquote item">
               <p class="mb-0">${result.question}</p>
               <footer class="blockquote-footer">${result.answer}</footer>
-              ${result.value ? `<p class="text-muted">${result.value}</p>` : ''}
+              ${result.value ? `<p class="text-muted mb-0">${result.value}</p>` : ''}
             </blockquote>
           `;
         }
@@ -76,7 +76,7 @@
             <div class="media item wiki">
               <div class="media-body">
                 <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
-                  <h5 class="mt-0">${result.title}</h5>
+                  <h4 class="mt-0">${result.title}</h4>
                 </a>
                 ${result.content ? `<p>${result.content}</p>` : ''}
                 <figcaption class="figure-caption">Wikipedia</figcaption>
@@ -95,7 +95,7 @@
         else if (result.type === 'element' && result.content) {
           const info = result.content;
           htmlStr += `
-            <div class="media item wiki">
+            <div class="media item-reverse wiki">
               <div class="media-body">
                 <h2 class="mt-0">${info.name} (${info.symbol})</h2>
                 <p class="mb-0"">${info.summary}</p>
