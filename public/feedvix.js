@@ -45,7 +45,7 @@
             <div class="media item">
               <div class="media-body">
                 <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
-                  <h3 class="mt-0">${result.title}</h3>
+                  <h4 class="mt-0">${result.title}</h4>
                 </a>
                 <small class="text-muted">${result.source.name} - ${result.createdAt}</small>
                 ${result.content ? `<p>${escapeHtml(result.content)}</p>` : ''}
