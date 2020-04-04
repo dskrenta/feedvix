@@ -1,5 +1,5 @@
 function atom({ symbol, shells }) {
-  let htmlStr = '<div class="atomContain">';
+  let htmlStr = '<div class="atomContain mr-3">';
   htmlStr += `<div class="atomCenter">${symbol}</div>`;
 
   let size = 50;

@@ -1,20 +1,62 @@
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+}
 body {
   padding-top: 16px;
+  margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fafcfe;
+}
+.header {
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
 }
 .container {
   max-width: 840px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
-.item {
+.item,
+.item-reverse {
   background: white;
   color: #444;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.05);
+  box-shadow: 1px 3px 10px rgba(0,0,0,0.12);
   padding: 12px 0 12px 16px;
   margin-bottom: 16px;
   overflow: hidden;
 }
 .media-body {
   padding-right: 12px;
-  box-sizing: border-box;
+  flex: 1;
 }
 h3 {
   border-left: 5px solid var(--teal);
@@ -22,9 +64,13 @@ h3 {
 .blockquote {
   border-left: 5px solid var(--blue);
   padding-right: 12px;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
 }
 .media {
   border-left: 5px solid var(--red);
+  display: flex;
+  align-items: flex-start;
 }
 .wiki {
   border-left: 5px solid var(--teal);
@@ -33,6 +79,78 @@ h3 {
   border-left: 5px solid var(--yellow);
   padding-right: 12px;
 }
+
+/* BOOTSTRAP STYLES */
+
+* {
+  box-sizing: border-box;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: .5rem;
+}
+.h1, h1 {
+  font-size: 2.5rem;
+}
+.h2, h2 {
+  font-size: 2rem;
+}
+.h3, h3 {
+  font-size: 1.75rem;
+}
+.h4, h4 {
+  font-size: 1.5rem;
+}
+.h5, h5 {
+  font-size: 1.25rem;
+}
+.h5, h5 {
+  font-size: 1rem;
+}
+a {
+  text-decoration: none;
+  color: var(--blue);
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.text-muted {
+  color: #6c757d !important;
+}
+.small, small {
+  font-size: 80%;
+  font-weight: 400;
+}
+.mb-0 {
+  margin-bottom: 0;
+}
+.mr-3 {
+  margin-right: 1rem;
+}
+blockquote {
+  margin: 0 0 1rem;
+}
+.blockquote-footer {
+  display: block;
+  font-size: 80%;
+  color: #6c757d;
+}
+.blockquote-footer::before {
+  content: "\2014\00A0";
+}
+.figure-caption {
+  font-size: 90%;
+  color: #6c757d;
+}
+
+/* ATOM STYLE */
+
 .atomContain {
   height: 200px;
   width: 200px;
@@ -73,7 +191,6 @@ h3 {
 #loading {
   width: 100%;
   padding: 24px 12px;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,7 +232,6 @@ h3 {
   position: absolute;
   top: -7px;
   left: 0;
-  box-sizing: border-box;
 }
 .eye2 {
   height: 6px;
@@ -125,7 +241,6 @@ h3 {
   position: absolute;
   top: -7px;
   left: 7px;
-  box-sizing: border-box;
 }
 .ttooth1 {
   width: 0;
@@ -268,6 +383,9 @@ h3 {
 @media screen and (max-width: 600px) {
   .item {
     flex-direction: column;
+  }
+  .item-reverse {
+    flex-direction: column-reverse;
   }
   .wiki > img {
     margin-top: 12px;
