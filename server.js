@@ -15,6 +15,7 @@ const jokes = require('./modules/jokes');
 const shuffle = require('./utils/shuffle');
 const quotes = require('./modules/quotes');
 const elements = require('./modules/elements');
+const investTerms = require('./modules/investTerms');
 const getPdf = require('./utils/getPdf');
 
 const PORT = process.env.PORT || 3000;
@@ -35,7 +36,8 @@ const modules = [
   adviceSlip,
   jokes,
   quotes,
-  elements
+  elements,
+  investTerms
 ];
 
 async function init() {

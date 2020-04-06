@@ -35,22 +35,22 @@
           `;
         }
         else if (result.type === 'num') {
-          htmlStr += `<h3 class="item">${result.num}</h3>`;
+          htmlStr += `<h3 class="item item-text">${result.num}</h3>`;
         }
         else if (result.type === 'text') {
-          htmlStr += `<h3 class="item">${result.text}</h3>`;
+          htmlStr += `<h3 class="item item-text">${result.text}</h3>`;
         }
         else if (result.type === 'article') {
           htmlStr += `
-            <div class="media item">
+            <div class="media item-reverse">
               <div class="media-body">
                 <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
-                  <h4 class="mt-0">${result.title}</h4>
+                  <h5 class="mt-0">${result.title}</h5>
                 </a>
                 <small class="text-muted">${result.source.name} - ${result.createdAt}</small>
                 ${result.content ? `<p>${escapeHtml(result.content)}</p>` : ''}
               </div>
-              <img src=${result.image} class="align-self-start mr-3"  width="200px" alt="...">
+              <img src=${result.image} class="item-image mr-3"  width="200px" alt="...">
             </div>
           `;
         }
@@ -73,7 +73,7 @@
         }
         else if (result.type === 'wiki') {
           htmlStr += `
-            <div class="media item wiki">
+            <div class="media item-reverse wiki">
               <div class="media-body">
                 <a href=${result.url} target="_blank" style="text-decoration: none; color: inherit">
                   <h4 class="mt-0">${result.title}</h4>
@@ -81,7 +81,7 @@
                 ${result.content ? `<p>${result.content}</p>` : ''}
                 <figcaption class="figure-caption">Wikipedia</figcaption>
               </div>
-              ${result.image ? `<img src=${result.image} class="align-self-start mr-3"  width="200px" alt=${result.title}>` : ''}
+              ${result.image ? `<img src=${result.image} class="item-image mr-3"  width="200px" alt=${result.title}>` : ''}
             </div>
           `;
         }
@@ -97,8 +97,8 @@
           htmlStr += `
             <div class="media item-reverse wiki">
               <div class="media-body">
-                <h2 class="mt-0">${info.name} (${info.symbol})</h2>
-                <p class="mb-0"">${info.summary}</p>
+                <h4 class="mt-0">${info.name} (${info.symbol})</h4>
+                <p class="mb-0">${info.summary}</p>
                 <a target="_blank" href="${info.source}">Wikipedia</a>
                 <p></p>
                 ${info.number ? `<p class="mb-0""><b>Atomic Number:</b> ${info.number}</p>` : ''}
@@ -114,6 +114,29 @@
                 ${info.spectral_img ? `<a class="mb-0"" target="_blank" href="${info.spectral_img}">Spectral Image</a>` : ''}
               </div>
               ${atom(info)}
+            </div>
+          `;
+        }
+        else if (result.type === 'investTerm' && result.content) {
+          const info = result.content;
+          htmlStr += `
+            <div class="media item wiki">
+              <div class="media-body">
+                <h4 class="mt-0">${info.title}</h4>
+                <p class="mb-0">${info.description}</p>
+                <a target="_blank" href="${info.url}">Investopedia</a>
+                ${(info.takeaways && info.takeaways.length) ? `
+                  <p></p>
+                  <h5>Key Takeaways</h5>
+                  <ul>
+                    ${info.takeaways.map((text) => `
+                      <li>
+                        ${text}
+                      </li>
+                    `).join('')}
+                  </ul>
+                ` : ''}
+              </div>
             </div>
           `;
         }
