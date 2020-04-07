@@ -8,23 +8,28 @@ async function elements() {
   return [
     {
       type: 'element',
-      content: shuffled.pop()
+      content: shuffled.pop(),
+      source: 'Wikipedia'
     },
     {
       type: 'element',
-      content: shuffled.pop()
+      content: shuffled.pop(),
+      source: 'Wikipedia'
     },
     {
       type: 'element',
-      content: shuffled.pop()
+      content: shuffled.pop(),
+      source: 'Wikipedia'
     },
     {
       type: 'element',
-      content: shuffled.pop()
+      content: shuffled.pop(),
+      source: 'Wikipedia'
     },
     {
       type: 'element',
-      content: shuffled.pop()
+      content: shuffled.pop(),
+      source: 'Wikipedia'
     },
   ];
 }
