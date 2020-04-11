@@ -142,6 +142,18 @@
         }
       }
 
+      htmlStr += `
+        <div class="pyroContain">
+          <button class="reloadButton" onClick="window.location.reload();">
+            Reload
+          </button>
+          <div class="pyro">
+            <div class="before"></div>
+            <div class="after"></div>
+          </div>
+        </div>
+      `;
+
       document.getElementById(LOADING_ID).remove();
       document.getElementById(CONTENT_ID).insertAdjacentHTML('afterbegin', htmlStr);
     }

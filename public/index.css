@@ -387,7 +387,7 @@ blockquote {
   .item-reverse {
     flex-direction: column-reverse;
   }
-  .wiki > img {
+  .item-image {
     margin-bottom: 1rem;
   }
   .img {
