@@ -5,6 +5,33 @@
   const DEV_API_URL = 'http://localhost:3000/api';
   const CONTENT_ID = 'content';
   const LOADING_ID = 'loading';
+  const TOGGLE_ID = 'toggle';
+
+  function toggleLightDark() {
+    const body = document.querySelector('body');
+
+    if (body.style.backgroundColor === 'black') {
+      body.style.backgroundColor = 'white';
+      body.style.color = 'black';
+
+      document.querySelectorAll('.item, .item-reverse').forEach(element => {
+        element.style.color = 'black';
+        element.style.backgroundColor = 'white';
+      });
+    } else {
+      body.style.backgroundColor = 'black';
+      body.style.color = 'white';
+
+      document.querySelectorAll('.item, .item-reverse').forEach(element => {
+        element.style.color = 'white';
+        element.style.backgroundColor = 'black';
+      });
+    }
+  }
+
+  document.getElementById(TOGGLE_ID).addEventListener('click', () => {
+    toggleLightDark()
+  })
 
   function escapeHtml(unsafe) {
     return unsafe
