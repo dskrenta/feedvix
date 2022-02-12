@@ -9,8 +9,9 @@
 
   function toggleLightDark() {
     const body = document.querySelector('body');
+    const backgroundColor = window.getComputedStyle(document.body).backgroundColor;
 
-    if (body.style.backgroundColor === 'black') {
+    if (backgroundColor === 'rgb(0, 0, 0)') {
       body.style.backgroundColor = 'white';
       body.style.color = 'black';
 
